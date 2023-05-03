@@ -24,7 +24,7 @@ class _TVViewState extends State<TVView> {
   Widget _buildPopularTV() {
     final states = context.watch<PopularTVBloc>().state;
     return states.maybeWhen(
-      empty: () => const Center(child: Text('Empty')),
+      empty: () => const SizedBox(),
       success: (tv) => TVVertical(tv: tv),
       orElse: () => const TVVerticalSkeleton(),
     );
@@ -33,7 +33,7 @@ class _TVViewState extends State<TVView> {
   Widget _buildOnTheAirTV() {
     final states = context.watch<OnTheAirTVBloc>().state;
     return states.maybeWhen(
-      empty: () => const Center(child: Text('Empty')),
+      empty: () => const SizedBox(),
       success: (tv) => TVHorizontal(title: 'On The Air', tv: tv),
       orElse: () => const TVHorizontalSkeleton(),
     );
