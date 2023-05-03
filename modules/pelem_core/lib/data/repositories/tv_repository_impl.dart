@@ -8,13 +8,13 @@ import 'package:pelem_core/domain/repositories/repositories.dart';
 import 'package:pelem_core/utils/utils.dart';
 
 class TVRepositoryImpl implements TVRepository {
-  final TVRemoteDataSource remoteDataSource;
-  final NetworkInfo networkInfo;
-
   const TVRepositoryImpl({
     required this.remoteDataSource,
     required this.networkInfo,
   });
+
+  final NetworkInfo networkInfo;
+  final TVRemoteDataSource remoteDataSource;
 
   @override
   Future<Either<Failure, List<TV>>> getOnTheAirTV() async {
@@ -45,9 +45,12 @@ class TVRepositoryImpl implements TVRepository {
   }
 
   @override
-  Future<Either<Failure, TVDetail>> getTVDetail(int id) async {
+  Future<Either<Failure, TVSeasonsDetail>> getSeasonDetail(
+    int id,
+    int season,
+  ) async {
     try {
-      final result = await remoteDataSource.getTVDetail(id);
+      final result = await remoteDataSource.getSeasonDetail(id, season);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure());
@@ -59,12 +62,9 @@ class TVRepositoryImpl implements TVRepository {
   }
 
   @override
-  Future<Either<Failure, TVSeasonsDetail>> getSeasonDetail(
-    int id,
-    int season,
-  ) async {
+  Future<Either<Failure, TVDetail>> getTVDetail(int id) async {
     try {
-      final result = await remoteDataSource.getSeasonDetail(id, season);
+      final result = await remoteDataSource.getTVDetail(id);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure());

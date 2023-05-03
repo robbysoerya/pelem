@@ -6,11 +6,12 @@ import 'upcoming_movies_event.dart';
 
 class UpcomingMoviesBloc
     extends Bloc<UpcomingMoviesEvent, AppStates<List<Movie>>> {
-  final GetUpcomingMovies getUpcomingMovies;
   UpcomingMoviesBloc(this.getUpcomingMovies)
       : super(const AppStates.loading()) {
     on<UpcomingMoviesStarted>(_onUpcomingMoviesStarted);
   }
+
+  final GetUpcomingMovies getUpcomingMovies;
 
   _onUpcomingMoviesStarted(
     UpcomingMoviesStarted event,

@@ -5,10 +5,11 @@ import 'package:pelem_tv/domain/usecase/usecase.dart';
 import 'on_the_air_tv_event.dart';
 
 class OnTheAirTVBloc extends Bloc<OnTheAirTVEvent, AppStates<List<TV>>> {
-  final GetOnTheAirTV getNowPlayingTV;
   OnTheAirTVBloc(this.getNowPlayingTV) : super(const AppStates.loading()) {
     on<OnTheAirTVStarted>(_onTheAirTVStarted);
   }
+
+  final GetOnTheAirTV getNowPlayingTV;
 
   _onTheAirTVStarted(
     OnTheAirTVStarted event,

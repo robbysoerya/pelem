@@ -8,18 +8,18 @@ import 'package:pelem_core/domain/repositories/repositories.dart';
 import 'package:pelem_core/utils/utils.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
-  final MovieRemoteDataSource remoteDataSource;
-  final NetworkInfo networkInfo;
-
   MovieRepositoryImpl({
     required this.remoteDataSource,
     required this.networkInfo,
   });
 
+  final NetworkInfo networkInfo;
+  final MovieRemoteDataSource remoteDataSource;
+
   @override
-  Future<Either<Failure, List<Movie>>> getNowPlayingMovies() async {
+  Future<Either<Failure, MovieDetail>> getMovieDetail(int id) async {
     try {
-      final result = await remoteDataSource.getNowPlayingMovies();
+      final result = await remoteDataSource.getMovieDetail(id);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure());
@@ -31,9 +31,23 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, MovieDetail>> getMovieDetail(int id) async {
+  Future<Either<Failure, List<MovieReview>>> getMovieReviews(int id) async {
     try {
-      final result = await remoteDataSource.getMovieDetail(id);
+      final result = await remoteDataSource.getMovieReviews(id);
+      return Right(result.toEntity());
+    } on ServerException {
+      return const Left(ServerFailure());
+    } on SocketException {
+      return const Left(SocketFailure());
+    } on TlsException {
+      return const Left(SSLFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getNowPlayingMovies() async {
+    try {
+      final result = await remoteDataSource.getNowPlayingMovies();
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure());
@@ -62,20 +76,6 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, List<Movie>>> getUpcomingMovies() async {
     try {
       final result = await remoteDataSource.getUpcomingMovies();
-      return Right(result.toEntity());
-    } on ServerException {
-      return const Left(ServerFailure());
-    } on SocketException {
-      return const Left(SocketFailure());
-    } on TlsException {
-      return const Left(SSLFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<MovieReview>>> getMovieReviews(int id) async {
-    try {
-      final result = await remoteDataSource.getMovieReviews(id);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure());

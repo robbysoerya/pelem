@@ -5,10 +5,11 @@ import 'package:pelem_tv/domain/usecase/usecase.dart';
 import 'tv_review_event.dart';
 
 class TVReviewBloc extends Bloc<TVReviewEvent, AppStates<List<TVReview>>> {
-  final GetTVReview getTVReview;
   TVReviewBloc(this.getTVReview) : super(const AppStates.loading()) {
     on<TVReviewStarted>(_onTVReviewStarted);
   }
+
+  final GetTVReview getTVReview;
 
   _onTVReviewStarted(
     TVReviewStarted event,

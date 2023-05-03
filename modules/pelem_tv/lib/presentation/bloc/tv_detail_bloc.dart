@@ -5,13 +5,13 @@ import 'package:pelem_tv/domain/usecase/usecase.dart';
 import 'tv_detail_event.dart';
 
 class TVDetailBloc extends Bloc<TVDetailEvent, AppStates<TVDetail>> {
-  final GetTVDetail getTVDetail;
-
   TVDetailBloc({
     required this.getTVDetail,
   }) : super(const AppStates.loading()) {
     on<TVDetailStarted>(_onTVDetailStarted);
   }
+
+  final GetTVDetail getTVDetail;
 
   _onTVDetailStarted(
     TVDetailStarted event,

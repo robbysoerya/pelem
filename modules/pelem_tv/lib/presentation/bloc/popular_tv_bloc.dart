@@ -5,10 +5,11 @@ import 'package:pelem_tv/domain/usecase/usecase.dart';
 import 'popular_tv_event.dart';
 
 class PopularTVBloc extends Bloc<PopularTVEvent, AppStates<List<TV>>> {
-  final GetPopularTV getPopularTV;
   PopularTVBloc(this.getPopularTV) : super(const AppStates.loading()) {
     on<PopularTVStarted>(_onPopularTVStarted);
   }
+
+  final GetPopularTV getPopularTV;
 
   _onPopularTVStarted(
     PopularTVStarted event,

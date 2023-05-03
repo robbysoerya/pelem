@@ -1,0 +1,15 @@
+memberOrdering: public-constructor
+  named-constructors
+  public-static-variables
+  public-instance-variables
+  public-override-variables
+  private-static-variables
+  private-instance-variables
+  public-override-methods
+  public-other-methods
+  private-other-methods
+  build-method
+exclude:
+  - "**/*.g.dart"
+  - "**/*.freezed.dart"
+  - ".dart_tool/"

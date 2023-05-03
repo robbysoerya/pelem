@@ -5,13 +5,13 @@ import 'package:pelem_movie/domain/usecase/usecase.dart';
 import 'movie_detail_event.dart';
 
 class MovieDetailBloc extends Bloc<MovieDetailEvent, AppStates<MovieDetail>> {
-  final GetMovieDetail getMovieDetail;
-
   MovieDetailBloc({
     required this.getMovieDetail,
   }) : super(const AppStates.loading()) {
     on<MovieDetailStarted>(_onMovieDetailStarted);
   }
+
+  final GetMovieDetail getMovieDetail;
 
   _onMovieDetailStarted(
     MovieDetailStarted event,

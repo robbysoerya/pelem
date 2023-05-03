@@ -6,11 +6,12 @@ import 'tv_season_detail_event.dart';
 
 class TVSeasonDetailBloc
     extends Bloc<TVSeasonDetailEvent, AppStates<TVSeasonsDetail>> {
-  final GetTVSeasonDetail getTVSeasonDetail;
   TVSeasonDetailBloc(this.getTVSeasonDetail)
       : super(const AppStates.loading()) {
     on<TVSeasonDetailStarted>(_onTVSeasonDetailStarted);
   }
+
+  final GetTVSeasonDetail getTVSeasonDetail;
 
   _onTVSeasonDetailStarted(
     TVSeasonDetailStarted event,

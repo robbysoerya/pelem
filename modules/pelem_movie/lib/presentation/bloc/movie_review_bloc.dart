@@ -6,13 +6,13 @@ import 'movie_review_event.dart';
 
 class MovieReviewBloc
     extends Bloc<MovieReviewEvent, AppStates<List<MovieReview>>> {
-  final GetMovieReview getMovieReview;
-
   MovieReviewBloc({
     required this.getMovieReview,
   }) : super(const AppStates.loading()) {
     on<MovieReviewStarted>(_onMovieReviewStarted);
   }
+
+  final GetMovieReview getMovieReview;
 
   _onMovieReviewStarted(
     MovieReviewStarted event,

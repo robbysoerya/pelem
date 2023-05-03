@@ -6,10 +6,11 @@ import 'popular_movies_event.dart';
 
 class PopularMoviesBloc
     extends Bloc<PopularMoviesEvent, AppStates<List<Movie>>> {
-  final GetPopularMovies getPopularMovies;
   PopularMoviesBloc(this.getPopularMovies) : super(const AppStates.loading()) {
     on<PopularMoviesStarted>(_onPopularMoviesStarted);
   }
+
+  final GetPopularMovies getPopularMovies;
 
   _onPopularMoviesStarted(
     PopularMoviesStarted event,

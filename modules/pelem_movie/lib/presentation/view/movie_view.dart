@@ -22,6 +22,39 @@ class _MovieViewState extends State<MovieView> {
     });
   }
 
+  Widget _buildNowPlayingMovies() {
+    final states = context.watch<NowPlayingMoviesBloc>().state;
+    return states.maybeWhen(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      empty: () => const Center(child: Text('Empty')),
+      error: (f) => Center(child: Text(f.message)),
+      success: (data) => MovieHorizontal(title: 'Now Playing', movies: data),
+      orElse: () => const SizedBox(),
+    );
+  }
+
+  Widget _buildUpcomingMovies() {
+    final states = context.watch<UpcomingMoviesBloc>().state;
+    return states.maybeWhen(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      empty: () => const Center(child: Text('Empty')),
+      error: (f) => Center(child: Text(f.message)),
+      success: (data) => MovieHorizontal(title: 'Upcoming', movies: data),
+      orElse: () => const SizedBox(),
+    );
+  }
+
+  Widget _buildPopularMovies() {
+    final states = context.watch<PopularMoviesBloc>().state;
+    return states.maybeWhen(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      empty: () => const Center(child: Text('Empty')),
+      error: (f) => Center(child: Text(f.message)),
+      success: (data) => MovieVertical(movies: data),
+      orElse: () => const SizedBox(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,39 +86,6 @@ class _MovieViewState extends State<MovieView> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildNowPlayingMovies() {
-    final states = context.watch<NowPlayingMoviesBloc>().state;
-    return states.maybeWhen(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      empty: () => const Center(child: Text('Empty')),
-      error: (f) => Center(child: Text(f.message)),
-      success: (data) => MovieHorizontal(title: 'Now Playing', movies: data),
-      orElse: () => const SizedBox(),
-    );
-  }
-
-  Widget _buildUpcomingMovies() {
-    final states = context.watch<UpcomingMoviesBloc>().state;
-    return states.maybeWhen(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      empty: () => const Center(child: Text('Empty')),
-      error: (f) => Center(child: Text(f.message)),
-      success: (data) => MovieHorizontal(title: 'Upcoming', movies: data),
-      orElse: () => const SizedBox(),
-    );
-  }
-
-  Widget _buildPopularMovies() {
-    final states = context.watch<PopularMoviesBloc>().state;
-    return states.maybeWhen(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      empty: () => const Center(child: Text('Empty')),
-      error: (f) => Center(child: Text(f.message)),
-      success: (data) => MovieVertical(movies: data),
-      orElse: () => const SizedBox(),
     );
   }
 }

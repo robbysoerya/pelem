@@ -6,11 +6,12 @@ import 'now_playing_movies_event.dart';
 
 class NowPlayingMoviesBloc
     extends Bloc<NowPlayingMoviesEvent, AppStates<List<Movie>>> {
-  final GetNowPlayingMovies getNowPlayingMovies;
   NowPlayingMoviesBloc(this.getNowPlayingMovies)
       : super(const AppStates.loading()) {
     on<NowPlayingMoviesStarted>(_onNowPlayingMoviesStarted);
   }
+
+  final GetNowPlayingMovies getNowPlayingMovies;
 
   _onNowPlayingMoviesStarted(
     NowPlayingMoviesStarted event,

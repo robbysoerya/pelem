@@ -11,8 +11,8 @@ class MovieHorizontal extends StatelessWidget {
     super.key,
   });
 
-  final String title;
   final List<Movie> movies;
+  final String title;
 
   @override
   Widget build(BuildContext context) {

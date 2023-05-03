@@ -4,16 +4,20 @@ import 'package:pelem_core/utils/utils.dart';
 
 abstract class TVRemoteDataSource {
   Future<TVResponse> getOnTheAirTV();
+
   Future<TVResponse> getPopularTV();
+
   Future<TVDetailResponse> getTVDetail(int id);
+
   Future<TVSeasonsDetailModel> getSeasonDetail(int id, int season);
+
   Future<TVReviewResponse> getTVReview(int id);
 }
 
 class TVRemoteDataSourceImpl implements TVRemoteDataSource {
-  final NetworkService ns;
-
   const TVRemoteDataSourceImpl({required this.ns});
+
+  final NetworkService ns;
 
   @override
   Future<TVResponse> getOnTheAirTV() async {
@@ -38,22 +42,22 @@ class TVRemoteDataSourceImpl implements TVRemoteDataSource {
   }
 
   @override
-  Future<TVDetailResponse> getTVDetail(int id) async {
-    final response = await ns.get('/tv/$id');
+  Future<TVSeasonsDetailModel> getSeasonDetail(int id, int season) async {
+    final response = await ns.get('/tv/$id/season/$season');
 
     if (response.statusCode == 200) {
-      return TVDetailResponse.fromJson(response.data);
+      return TVSeasonsDetailModel.fromJson(response.data);
     } else {
       throw ServerException();
     }
   }
 
   @override
-  Future<TVSeasonsDetailModel> getSeasonDetail(int id, int season) async {
-    final response = await ns.get('/tv/$id/season/$season');
+  Future<TVDetailResponse> getTVDetail(int id) async {
+    final response = await ns.get('/tv/$id');
 
     if (response.statusCode == 200) {
-      return TVSeasonsDetailModel.fromJson(response.data);
+      return TVDetailResponse.fromJson(response.data);
     } else {
       throw ServerException();
     }
