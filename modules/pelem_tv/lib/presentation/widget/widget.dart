@@ -6,3 +6,4 @@ export 'tv_horizontal.dart';
 export 'tv_horizontal_card.dart';
 export 'tv_vertical.dart';
 export 'tv_vertical_card.dart';
+export 'skeleton/skeleton.dart';
