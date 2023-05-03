@@ -25,7 +25,7 @@ class _MovieViewState extends State<MovieView> {
   Widget _buildNowPlayingMovies() {
     final states = context.watch<NowPlayingMoviesBloc>().state;
     return states.maybeWhen(
-      empty: () => const Center(child: Text('Empty')),
+      empty: () => const SizedBox(),
       error: (f) => Center(child: Text(f.message)),
       success: (data) => MovieHorizontal(title: 'Now Playing', movies: data),
       orElse: () => const MovieHorizontalSkeleton(),
@@ -35,7 +35,7 @@ class _MovieViewState extends State<MovieView> {
   Widget _buildUpcomingMovies() {
     final states = context.watch<UpcomingMoviesBloc>().state;
     return states.maybeWhen(
-      empty: () => const Center(child: Text('Empty')),
+      empty: () => const SizedBox(),
       error: (f) => Center(child: Text(f.message)),
       success: (data) => MovieHorizontal(title: 'Upcoming', movies: data),
       orElse: () => const MovieHorizontalSkeleton(),
@@ -45,7 +45,7 @@ class _MovieViewState extends State<MovieView> {
   Widget _buildPopularMovies() {
     final states = context.watch<PopularMoviesBloc>().state;
     return states.maybeWhen(
-      empty: () => const Center(child: Text('Empty')),
+      empty: () => const SizedBox(),
       error: (f) => Center(child: Text(f.message)),
       success: (data) => MovieVertical(movies: data),
       orElse: () => const MovieVerticalSkeleton(),
