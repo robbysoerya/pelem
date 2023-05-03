@@ -1,0 +1,33 @@
+name: pelem_tv
+description: A new Flutter module project.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.6 <3.0.0"
+
+dependencies:
+  cached_network_image: ^3.2.3
+  cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.2
+  flutter_screenutil: ^5.7.0
+  freezed_annotation: ^2.2.0
+  go_router: ^7.0.0
+  pelem_core:
+    path: ../pelem_core
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  module:
+    androidX: true
+    androidPackage: com.example.pelem_tv
+    iosBundleIdentifier: com.example.pelemTv

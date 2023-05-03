@@ -1,0 +1,10 @@
+export 'movie_detail_bloc.dart';
+export 'movie_detail_event.dart';
+export 'movie_review_bloc.dart';
+export 'movie_review_event.dart';
+export 'now_playing_movies_bloc.dart';
+export 'now_playing_movies_event.dart';
+export 'popular_movies_bloc.dart';
+export 'popular_movies_event.dart';
+export 'upcoming_movies_bloc.dart';
+export 'upcoming_movies_event.dart';
