@@ -5,7 +5,7 @@ import 'package:pelem_core/utils/utils.dart';
 abstract class MovieRepository {
   Future<Either<Failure, List<Movie>>> getNowPlayingMovies();
 
-  Future<Either<Failure, List<Movie>>> getPopularMovies();
+  Future<Either<Failure, List<Movie>>> getPopularMovies(int page);
 
   Future<Either<Failure, List<Movie>>> getUpcomingMovies();
 

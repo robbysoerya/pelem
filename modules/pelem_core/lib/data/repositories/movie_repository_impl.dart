@@ -59,9 +59,9 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, List<Movie>>> getPopularMovies() async {
+  Future<Either<Failure, List<Movie>>> getPopularMovies(int page) async {
     try {
-      final result = await remoteDataSource.getPopularMovies();
+      final result = await remoteDataSource.getPopularMovies(page);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure());

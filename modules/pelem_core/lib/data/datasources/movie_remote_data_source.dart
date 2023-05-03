@@ -5,7 +5,7 @@ import 'package:pelem_core/utils/utils.dart';
 abstract class MovieRemoteDataSource {
   Future<MovieResponse> getNowPlayingMovies();
 
-  Future<MovieResponse> getPopularMovies();
+  Future<MovieResponse> getPopularMovies(int page);
 
   Future<MovieResponse> getUpcomingMovies();
 
@@ -53,8 +53,8 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   }
 
   @override
-  Future<MovieResponse> getPopularMovies() async {
-    final response = await ns.get('/movie/popular');
+  Future<MovieResponse> getPopularMovies(int page) async {
+    final response = await ns.get('/movie/popular?page=$page');
 
     if (response.statusCode == 200) {
       return MovieResponse.fromJson(response.data);

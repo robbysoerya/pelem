@@ -55,17 +55,31 @@ class _MovieViewState extends State<MovieView> {
   Widget _buildBody() {
     return Container(
       color: Colors.grey[200],
-      child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 16.0.r),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildNowPlayingMovies(),
-            SizedBox(height: 24.0.h),
-            _buildUpcomingMovies(),
-            SizedBox(height: 24.0.h),
-            _buildPopularMovies(),
-          ],
+      child: NotificationListener(
+        onNotification: (ScrollEndNotification notification) {
+          final metrics = notification.metrics;
+          final maxScroll = metrics.maxScrollExtent;
+          final currentScroll = metrics.pixels;
+          final delta = 50.0.h;
+          final isEndPage = maxScroll - currentScroll <= delta;
+          if (isEndPage) {
+            context.read<PopularMoviesBloc>().add(const PopularMoviesStarted());
+            return true;
+          }
+          return false;
+        },
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 16.0.r),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildNowPlayingMovies(),
+              SizedBox(height: 24.0.h),
+              _buildUpcomingMovies(),
+              SizedBox(height: 24.0.h),
+              _buildPopularMovies(),
+            ],
+          ),
         ),
       ),
     );
