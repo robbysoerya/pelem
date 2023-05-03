@@ -1,0 +1,105 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "pelem",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "pelem (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "pelem (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "pelem_core",
+            "cwd": "modules/pelem_core",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "pelem_core (profile mode)",
+            "cwd": "modules/pelem_core",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "pelem_core (release mode)",
+            "cwd": "modules/pelem_core",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "pelem_movie",
+            "cwd": "modules/pelem_movie",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "pelem_movie (profile mode)",
+            "cwd": "modules/pelem_movie",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "pelem_movie (release mode)",
+            "cwd": "modules/pelem_movie",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "pelem_profile",
+            "cwd": "modules/pelem_profile",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "pelem_profile (profile mode)",
+            "cwd": "modules/pelem_profile",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "pelem_profile (release mode)",
+            "cwd": "modules/pelem_profile",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "pelem_tv",
+            "cwd": "modules/pelem_tv",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "pelem_tv (profile mode)",
+            "cwd": "modules/pelem_tv",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "pelem_tv (release mode)",
+            "cwd": "modules/pelem_tv",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
