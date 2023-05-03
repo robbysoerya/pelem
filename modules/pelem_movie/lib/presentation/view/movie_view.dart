@@ -25,67 +25,72 @@ class _MovieViewState extends State<MovieView> {
   Widget _buildNowPlayingMovies() {
     final states = context.watch<NowPlayingMoviesBloc>().state;
     return states.maybeWhen(
-      loading: () => const Center(child: CircularProgressIndicator()),
       empty: () => const Center(child: Text('Empty')),
       error: (f) => Center(child: Text(f.message)),
       success: (data) => MovieHorizontal(title: 'Now Playing', movies: data),
-      orElse: () => const SizedBox(),
+      orElse: () => const MovieHorizontalSkeleton(),
     );
   }
 
   Widget _buildUpcomingMovies() {
     final states = context.watch<UpcomingMoviesBloc>().state;
     return states.maybeWhen(
-      loading: () => const Center(child: CircularProgressIndicator()),
       empty: () => const Center(child: Text('Empty')),
       error: (f) => Center(child: Text(f.message)),
       success: (data) => MovieHorizontal(title: 'Upcoming', movies: data),
-      orElse: () => const SizedBox(),
+      orElse: () => const MovieHorizontalSkeleton(),
     );
   }
 
   Widget _buildPopularMovies() {
     final states = context.watch<PopularMoviesBloc>().state;
     return states.maybeWhen(
-      loading: () => const Center(child: CircularProgressIndicator()),
       empty: () => const Center(child: Text('Empty')),
       error: (f) => Center(child: Text(f.message)),
       success: (data) => MovieVertical(movies: data),
-      orElse: () => const SizedBox(),
+      orElse: () => const MovieVerticalSkeleton(),
+    );
+  }
+
+  Widget _buildBody() {
+    return Container(
+      color: Colors.grey[200],
+      child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(vertical: 16.0.r),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildNowPlayingMovies(),
+            SizedBox(height: 24.0.h),
+            _buildUpcomingMovies(),
+            SizedBox(height: 24.0.h),
+            _buildPopularMovies(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.grey[200],
+      elevation: 0.0,
+      centerTitle: false,
+      title: Text(
+        'Movies',
+        style: Theme.of(context)
+            .textTheme
+            .displaySmall
+            ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey[200],
-        elevation: 0.0,
-        centerTitle: false,
-        title: Text(
-          'Movies',
-          style: Theme.of(context)
-              .textTheme
-              .displaySmall
-              ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Container(
-        color: Colors.grey[200],
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 16.0.r),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildNowPlayingMovies(),
-              SizedBox(height: 24.0.h),
-              _buildUpcomingMovies(),
-              SizedBox(height: 24.0.h),
-              _buildPopularMovies(),
-            ],
-          ),
-        ),
-      ),
+      appBar: _buildAppBar(context),
+      body: _buildBody(),
     );
   }
 }

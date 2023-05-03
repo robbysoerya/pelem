@@ -28,7 +28,6 @@ class MovieHorizontalCard extends StatelessWidget {
             Container(
               width: 125.r,
               height: 150.r,
-              margin: EdgeInsets.only(right: 8.0.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0.r),
                 image: DecorationImage(
