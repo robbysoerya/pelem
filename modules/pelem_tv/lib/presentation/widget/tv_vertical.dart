@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pelem_core/core.dart';
 import 'package:pelem_tv/tv.dart';
 
-import 'tv_vertical_card.dart';
-
 class TVVertical extends StatelessWidget {
   const TVVertical({
     required this.tv,
