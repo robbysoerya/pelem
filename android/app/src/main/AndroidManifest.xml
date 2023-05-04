@@ -2,12 +2,16 @@
     package="app.pelem.pelem">
 
      <uses-permission android:name="android.permission.INTERNET"/>
-     
+
      <!-- Provide required visibility configuration for API level 30 and above -->
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="mailto" />
+        </intent>
+          <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
         </intent>
     </queries>
    <application
