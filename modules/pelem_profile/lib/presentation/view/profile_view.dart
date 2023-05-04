@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pelem_core/utils/palette.dart';
 import 'package:pelem_profile/presentation/widget/widget.dart';
 
 class ProfileView extends StatefulWidget {
@@ -37,7 +38,7 @@ class _ProfileViewState extends State<ProfileView> {
           ),
           Container(
             height: 0.35.sh,
-            color: Colors.cyan[100],
+            color: Palette.primaryColor,
           ),
           Positioned(
             top: 0.26.sh,

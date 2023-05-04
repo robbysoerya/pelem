@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelem_core/utils/palette.dart';
 
 class SkillChip extends StatelessWidget {
   const SkillChip({
@@ -18,7 +19,7 @@ class SkillChip extends StatelessWidget {
             .bodyMedium
             ?.copyWith(color: Colors.white),
       ),
-      backgroundColor: Colors.cyan[700],
+      backgroundColor: Palette.secondaryColor,
     );
   }
 }

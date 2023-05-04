@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pelem_core/utils/palette.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SocialCard extends StatelessWidget {
@@ -25,7 +26,7 @@ class SocialCard extends StatelessWidget {
         height: 40.0.r,
         width: 40.0.r,
         decoration: BoxDecoration(
-          color: Colors.red[100],
+          color: Palette.primaryAncentColor,
           borderRadius: BorderRadius.circular(12.0.r),
         ),
         child: Icon(icon),
