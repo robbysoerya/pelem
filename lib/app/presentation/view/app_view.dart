@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pelem_core/utils/palette.dart';
 
 class AppView extends StatefulWidget {
   const AppView({required this.child, super.key});
@@ -20,7 +21,7 @@ class _AppViewState extends State<AppView> {
       ),
       activeIcon: Icon(
         Icons.movie,
-        color: Colors.purple,
+        color: Palette.primaryColor,
       ),
     ),
     _NavBarItem(
@@ -31,7 +32,7 @@ class _AppViewState extends State<AppView> {
       ),
       activeIcon: Icon(
         Icons.tv,
-        color: Colors.purple,
+        color: Palette.primaryColor,
       ),
     ),
     _NavBarItem(
@@ -42,7 +43,7 @@ class _AppViewState extends State<AppView> {
       ),
       activeIcon: Icon(
         Icons.person,
-        color: Colors.purple,
+        color: Palette.primaryColor,
       ),
     ),
   ];
