@@ -36,13 +36,8 @@ class PopularMoviesBloc
     List<Movie> movies,
     Emitter<AppStates<List<Movie>>> emit,
   ) {
-    final currentState = state;
-    if (currentState is Success) {
-      final currentData = currentState.maybeWhen(
-        success: (data) => data,
-        orElse: () => [],
-      );
-      emit(AppStates.success([...currentData, ...movies]));
-    }
+    final currentState = state as Success;
+    final currentData = currentState.data;
+    emit(AppStates.success([...currentData, ...movies]));
   }
 }
