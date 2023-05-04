@@ -13,4 +13,3 @@ export 'tv_model.dart';
 export 'tv_response.dart';
 export 'tv_review_model.dart';
 export 'tv_review_response.dart';
-export 'tv_seasons_detail_model.dart';

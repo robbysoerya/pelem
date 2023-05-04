@@ -31,26 +31,9 @@ class TVRepositoryImpl implements TVRepository {
   }
 
   @override
-  Future<Either<Failure, List<TV>>> getPopularTV() async {
+  Future<Either<Failure, List<TV>>> getPopularTV(int page) async {
     try {
-      final result = await remoteDataSource.getPopularTV();
-      return Right(result.toEntity());
-    } on ServerException {
-      return const Left(ServerFailure());
-    } on SocketException {
-      return const Left(SocketFailure());
-    } on TlsException {
-      return const Left(SSLFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, TVSeasonsDetail>> getSeasonDetail(
-    int id,
-    int season,
-  ) async {
-    try {
-      final result = await remoteDataSource.getSeasonDetail(id, season);
+      final result = await remoteDataSource.getPopularTV(page);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure());

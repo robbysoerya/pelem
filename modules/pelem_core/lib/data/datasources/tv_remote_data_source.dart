@@ -5,11 +5,9 @@ import 'package:pelem_core/utils/utils.dart';
 abstract class TVRemoteDataSource {
   Future<TVResponse> getOnTheAirTV();
 
-  Future<TVResponse> getPopularTV();
+  Future<TVResponse> getPopularTV(int page);
 
   Future<TVDetailResponse> getTVDetail(int id);
-
-  Future<TVSeasonsDetailModel> getSeasonDetail(int id, int season);
 
   Future<TVReviewResponse> getTVReview(int id);
 }
@@ -31,22 +29,11 @@ class TVRemoteDataSourceImpl implements TVRemoteDataSource {
   }
 
   @override
-  Future<TVResponse> getPopularTV() async {
-    final response = await ns.get('/tv/popular');
+  Future<TVResponse> getPopularTV(int page) async {
+    final response = await ns.get('/tv/popular?page=$page');
 
     if (response.statusCode == 200) {
       return TVResponse.fromJson(response.data);
-    } else {
-      throw ServerException();
-    }
-  }
-
-  @override
-  Future<TVSeasonsDetailModel> getSeasonDetail(int id, int season) async {
-    final response = await ns.get('/tv/$id/season/$season');
-
-    if (response.statusCode == 200) {
-      return TVSeasonsDetailModel.fromJson(response.data);
     } else {
       throw ServerException();
     }

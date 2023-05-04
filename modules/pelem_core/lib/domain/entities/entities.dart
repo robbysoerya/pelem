@@ -9,4 +9,3 @@ export 'seasons.dart';
 export 'tv.dart';
 export 'tv_detail.dart';
 export 'tv_review.dart';
-export 'tv_seasons_detail.dart';
