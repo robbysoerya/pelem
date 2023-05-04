@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -122,6 +123,14 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routerConfig: _routes,
           title: 'Pelem',
+          theme: ThemeData.light().copyWith(
+            appBarTheme: ThemeData.light().appBarTheme.copyWith(
+              systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarColor: Colors.transparent,
+                statusBarIconBrightness: Brightness.dark,
+              ),
+            ),
+          ),
         );
       },
     );
