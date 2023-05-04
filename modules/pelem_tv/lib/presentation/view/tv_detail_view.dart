@@ -27,22 +27,35 @@ class _TVDetailViewState extends State<TVDetailView> {
     );
   }
 
+  Widget _buildLoadingContent() {
+    return Container(
+      alignment: Alignment.center,
+      width: 1.sw,
+      height: 1.sh,
+      child: const CircularProgressIndicator(),
+    );
+  }
+
   Widget _buildContent(BuildContext context) {
     final states = context.watch<TVDetailBloc>().state;
     return states.maybeWhen(
       orElse: () => const SizedBox(),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => _buildLoadingContent(),
       error: (f) => Center(child: Text(f.message)),
-      success: (tv) => Container(
-        padding: EdgeInsets.all(16.0.r),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildIntroduction(context, tv),
-            SizedBox(height: 24.0.h),
-            _buildReview(context),
-          ],
-        ),
+      success: (tv) => _buildItemContent(context, tv),
+    );
+  }
+
+  Widget _buildItemContent(BuildContext context, TVDetail tv) {
+    return Container(
+      padding: EdgeInsets.all(16.0.r),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildIntroduction(context, tv),
+          SizedBox(height: 24.0.h),
+          _buildReview(context),
+        ],
       ),
     );
   }
@@ -69,7 +82,23 @@ class _TVDetailViewState extends State<TVDetailView> {
       orElse: () => const SizedBox(),
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (f) => Center(child: Text(f.message)),
+      empty: () => _buildEmptyReview(),
       success: (reviews) => TVDetailReview(reviews: reviews),
+    );
+  }
+
+  Widget _buildEmptyReview() {
+    return Container(
+      height: 150.0.h,
+      width: double.infinity,
+      padding: EdgeInsets.all(16.0.r),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(8.0.r),
+      ),
+      child: const Center(
+        child: Text('No review'),
+      ),
     );
   }
 
@@ -81,27 +110,35 @@ class _TVDetailViewState extends State<TVDetailView> {
     );
   }
 
+  SliverList _buildSliverList(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        [
+          SingleChildScrollView(
+            child: _buildContent(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  CustomScrollView _buildBody(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        _buildAppBar(),
+        SliverToBoxAdapter(
+          child: SizedBox(height: 24.0.h),
+        ),
+        _buildSliverList(context)
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: [
-          _buildAppBar(),
-          SliverToBoxAdapter(
-            child: SizedBox(height: 24.0.h),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                SingleChildScrollView(
-                  child: _buildContent(context),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+      body: _buildBody(context),
     );
   }
 }

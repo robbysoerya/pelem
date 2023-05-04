@@ -92,7 +92,27 @@ class TVDetailAppBar extends StatelessWidget {
                                 ),
                           ),
                         ),
-                        const Text('Director: Jessica'),
+                        SizedBox(height: 4.0.h),
+                        Text('Release: ${tv.firstAirDate}'),
+                        SizedBox(height: 4.0.h),
+                        Text('Total Episode: ${tv.numberOfEpisodes}'),
+                        SizedBox(height: 8.0.h),
+                        Row(
+                          children: [
+                            StarRating(rating: tv.voteAverage / 2),
+                            SizedBox(width: 8.0.w),
+                            Text(
+                              tv.voteAverage.toStringAsFixed(1),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                    color: Colors.amber,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

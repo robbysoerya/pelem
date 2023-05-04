@@ -6,5 +6,3 @@ export 'tv_detail_bloc.dart';
 export 'tv_detail_event.dart';
 export 'tv_review_bloc.dart';
 export 'tv_review_event.dart';
-export 'tv_season_detail_bloc.dart';
-export 'tv_season_detail_event.dart';

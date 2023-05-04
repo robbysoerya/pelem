@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pelem_core/core.dart';
+import 'package:pelem_tv/tv.dart';
 
 import 'tv_vertical_card.dart';
 
@@ -28,10 +29,12 @@ class TVVertical extends StatelessWidget {
           ),
           SizedBox(height: 24.0.h),
           ListView.separated(
-            itemCount: tv.length > 10 ? 10 : tv.length,
+            itemCount: tv.length + 1,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (_, index) => TVVerticalCard(tv: tv[index]),
+            itemBuilder: (_, index) => index >= tv.length
+                ? const TVVerticalCardSkeleton()
+                : TVVerticalCard(tv: tv[index]),
             separatorBuilder: (_, __) => SizedBox(height: 32.0.h),
           ),
         ],

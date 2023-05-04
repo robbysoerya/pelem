@@ -42,15 +42,29 @@ class _TVViewState extends State<TVView> {
   Widget _buildBody() {
     return Container(
       color: Colors.grey[200],
-      child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 16.0.r),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildOnTheAirTV(),
-            SizedBox(height: 24.0.h),
-            _buildPopularTV()
-          ],
+      child: NotificationListener(
+        onNotification: (ScrollEndNotification notification) {
+           final metrics = notification.metrics;
+          final maxScroll = metrics.maxScrollExtent;
+          final currentScroll = metrics.pixels;
+          final delta = 50.0.h;
+          final isEndPage = maxScroll - currentScroll <= delta;
+          if (isEndPage) {
+            context.read<PopularTVBloc>().add(const PopularTVStarted());
+            return true;
+          }
+          return false;
+        },
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 16.0.r),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildOnTheAirTV(),
+              SizedBox(height: 24.0.h),
+              _buildPopularTV()
+            ],
+          ),
         ),
       ),
     );

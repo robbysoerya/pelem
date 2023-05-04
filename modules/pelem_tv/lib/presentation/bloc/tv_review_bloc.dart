@@ -19,7 +19,9 @@ class TVReviewBloc extends Bloc<TVReviewEvent, AppStates<List<TVReview>>> {
     final result = await getTVReview.execute(event.id);
     result.fold(
       (failure) => emit(AppStates.error(failure)),
-      (reviews) => emit(AppStates.success(reviews)),
+      (reviews) => reviews.isEmpty
+          ? emit(const AppStates.empty())
+          : emit(AppStates.success(reviews)),
     );
   }
 }

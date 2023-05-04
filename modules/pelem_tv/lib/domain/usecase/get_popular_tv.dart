@@ -6,7 +6,7 @@ class GetPopularTV {
 
   final TVRepository repository;
 
-  Future<Either<Failure, List<TV>>> execute() {
-    return repository.getPopularTV();
+  Future<Either<Failure, List<TV>>> execute(int page) {
+    return repository.getPopularTV(page);
   }
 }
