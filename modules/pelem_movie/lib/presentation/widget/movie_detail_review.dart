@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pelem_core/core.dart';
 
-import 'movie_detail_review_card.dart';
-
 class MovieDetailReview extends StatelessWidget {
   const MovieDetailReview({
     required this.reviews,
@@ -29,7 +27,11 @@ class MovieDetailReview extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(
             reviews.length > 3 ? 3 : reviews.length,
-            (index) => MovieDetailReviewCard(review: reviews[index]),
+            (index) => ReviewCard(
+              author: reviews[index].author,
+              content: reviews[index].content,
+              rating: reviews[index].authorDetails.rating,
+            ),
           ),
         ),
       ],

@@ -20,11 +20,12 @@ class MovieReviewBloc
   ) async {
     emit(const AppStates.loading());
     final result = await getMovieReview.execute(event.id);
-    emit(
-      result.fold(
-        (failure) => AppStates.error(failure),
-        (reviews) => AppStates.success(reviews),
-      ),
+
+    result.fold(
+      (failure) => emit(AppStates.error(failure)),
+      (reviews) => reviews.isEmpty
+          ? emit(const AppStates.empty())
+          : emit(AppStates.success(reviews)),
     );
   }
 }

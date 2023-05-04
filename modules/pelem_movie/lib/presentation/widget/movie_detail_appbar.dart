@@ -92,7 +92,25 @@ class MovieDetailAppBar extends StatelessWidget {
                                 ),
                           ),
                         ),
-                        const Text('Director: Jessica'),
+                        SizedBox(height: 4.0.h),
+                        Text('Release: ${movie.releaseDate}'),
+                        SizedBox(height: 8.0.h),
+                        Row(
+                          children: [
+                            StarRating(rating: movie.voteAverage / 2),
+                            SizedBox(width: 8.0.w),
+                            Text(
+                              movie.voteAverage.toStringAsFixed(1),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                    color: Colors.amber,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
