@@ -124,6 +124,7 @@ class _TVDetailViewState extends State<TVDetailView> {
 
   CustomScrollView _buildBody(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
       slivers: [
         _buildAppBar(),
         SliverToBoxAdapter(
