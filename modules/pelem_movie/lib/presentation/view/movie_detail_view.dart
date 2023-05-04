@@ -116,6 +116,7 @@ class _MovieDetailViewState extends State<MovieDetailView> {
 
   CustomScrollView _buildBody(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
       slivers: [
         _buildAppBar(),
         SliverToBoxAdapter(
