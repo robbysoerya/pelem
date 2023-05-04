@@ -18,9 +18,20 @@ class SocialCard extends StatelessWidget {
     return InkWell(
       onTap: () async {
         final uri = Uri.parse(url);
+        final sm = ScaffoldMessenger.of(context);
         if (await canLaunchUrl(uri)) {
           launchUrl(uri);
+          return;
         }
+        sm.showSnackBar(
+          const SnackBar(
+            content: Text(
+              'No app found to open scheme',
+              textAlign: TextAlign.center,
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
       },
       child: Container(
         height: 40.0.r,
