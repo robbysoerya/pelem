@@ -49,11 +49,6 @@ void injectionInit() {
     ),
   );
   locator.registerFactory(
-    () => TVSeasonDetailBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
     () => TVReviewBloc(
       locator(),
     ),
@@ -68,7 +63,6 @@ void injectionInit() {
   locator.registerLazySingleton(() => GetOnTheAirTV(locator()));
   locator.registerLazySingleton(() => GetPopularTV(locator()));
   locator.registerLazySingleton(() => GetTVDetail(locator()));
-  locator.registerLazySingleton(() => GetTVSeasonDetail(locator()));
   locator.registerLazySingleton(() => GetTVReview(locator()));
 
   //Repository Injection
